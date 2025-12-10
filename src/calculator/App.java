@@ -44,12 +44,17 @@ public class App {
 
                 System.out.println("현재까지의 연산 결과 이력: " + calculator.getHistory()); // 현재까지의 연산 기록 출력
 
-                System.out.print("계산 이력을 모두 삭제하시겠습니까?(yes 입력 시 삭제): "); // yes 입력 시 이력 초기화
+                System.out.print("계산 이력을 삭제하시겠습니까?(all 입력 시 전체 삭제, first 입력 시 가장 먼저 저장된 이력 삭제): "); // 전체와 먼저 저장된 데이터 입력시를 구분하기 위해서 all과 first로 구분
                 String reset = sc.next();
 
-                if (reset.equalsIgnoreCase("yes")) {
+                if (reset.equalsIgnoreCase("all")) {
                     calculator.setHistory(new ArrayList<>()); // 빈 리스트를 새로 만들어서 Setter로 전달
                     System.out.println("계산 이력을 모두 삭제했습니다.");
+                    System.out.println(calculator.getHistory()); // 계산 이력이 비어있는것을 확인 시켜줌
+
+                }  else if (reset.equalsIgnoreCase("first")) {     // 첫 번째 이력만 삭제
+                    calculator.removeHistory();                   // 이력 비어 있으면 그냥 아무 일도 안 함
+                    System.out.println(calculator.getHistory()); // 삭제된 이후 계산 이력 출력
                 }
 
                 String answer;

@@ -59,4 +59,11 @@ public class Calculator {
     public void clearHistory() { // 이력 전체 삭제
         history.clear();
     }
+
+    public void removeHistory() {
+        if (history.isEmpty()) {
+            return; // 삭제할 이력이 없을 때
+        }
+        history.remove(0); // 첫 번째 요소 제거
+    }
 }
