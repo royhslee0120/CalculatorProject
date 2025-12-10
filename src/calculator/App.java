@@ -8,6 +8,7 @@ public class App {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        Calculator calculator = new Calculator(); // Calculator 객체 생성
 
         while(true) { // 계산기 반복을 위한 while문
 
@@ -36,31 +37,8 @@ public class App {
                     continue; // exit을 입력하기 전까지는 반복하도록 return에서 continue로 수정
                 }
 
-                int result = 0;
+                int result = calculator.calculator(num1, num2, op); // 계산은 Calculator 클래스가
 
-                switch (op) {
-                    case "+": // string으로 변경 '' -> ""
-                        result = num1 + num2;
-                        break;
-
-                    case "-": // string으로 변경 '' -> ""
-                        result = num1 - num2;
-                        break;
-
-                    case "*": // string으로 변경 '' -> ""
-                        result = num1 * num2;
-                        break;
-
-                    case "/": // string으로 변경 '' -> ""
-                        // 0으로 나눌수 없도록
-                        if (num2 == 0) {
-                            System.out.println("나눗셈 연산에서 분모(두번째 숫자)에 0이 입력될 수 없습니다.");
-                            continue; // exit을 입력하기 전까지는 반복하도록 return에서 continue로 수정
-                        } else {
-                            result = num1 / num2;
-                            break;
-                        }
-                }
                 System.out.println("결과: " + result);
 
                 String answer;
@@ -74,8 +52,14 @@ public class App {
                 }
 
             } catch (InputMismatchException e) {
-                System.out.println("양의 정수(0 포함)를 입력해주세요."); // 첫번째 숫자, 두번째 숫자에서 정수를 제외한 나머지를 입력한 경우
+                System.out.println("양의 정수(0 포함)를 입력해야합니다. 처음부터 다시 입력해주세요."); // 첫번째 숫자, 두번째 숫자에서 정수를 제외한 나머지를 입력한 경우
                 sc.nextLine(); // 잘못된 입력 제거
+
+            } catch (IllegalArgumentException e) { // 음수 입력, 지원하지 않는 연산자 등 Calculator에서 던진 예외 처리
+                System.out.println(e.getMessage());
+
+            } catch (ArithmeticException e) { // 0으로 나누기 등 Arithmetic 관련 예외 처리
+                System.out.println(e.getMessage());
             }
 
         }
