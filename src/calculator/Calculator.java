@@ -44,11 +44,19 @@ public class Calculator {
         return result;
     }
 
-    public List<Integer> getHistory() {
-        return history;
+    public List<Integer> getHistory() { // Getter 메서드
+        return new ArrayList<>(history);
     }
 
-    public void clearHistory() {
+    public void setHistory(List<Integer> history) { // Setter 메서드
+        if (history == null) {
+            this.history = new ArrayList<>();
+        } else {
+            this.history = new ArrayList<>(history); // 새로운 리스트로 교체
+        }
+    }
+
+    public void clearHistory() { // 이력 전체 삭제
         history.clear();
     }
 }

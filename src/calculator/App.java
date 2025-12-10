@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class App {
 
                 if (num1 < 0) {
                     System.out.println("양의 정수(0 포함)를 입력해야합니다. 처음부터 다시 입력해주세요."); // 양의 정수(0 포함)를 입력하지 않은 경우 바로 재시작 시키기 위해서 문구 수정
-                    return;
+                    continue; // exit을 입력하기 전까지는 반복하도록 return에서 continue로 수정
                 }
 
                 System.out.print("사칙연산 기호를 입력하세요(+, -, *, /): ");
@@ -40,6 +41,16 @@ public class App {
                 int result = calculator.calculator(num1, num2, op); // 계산은 Calculator 클래스가
 
                 System.out.println("결과: " + result);
+
+                System.out.println("현재까지의 연산 결과 이력: " + calculator.getHistory()); // 현재까지의 연산 기록 출력
+
+                System.out.print("계산 이력을 모두 삭제하시겠습니까?(yes 입력 시 삭제): "); // yes 입력 시 이력 초기화
+                String reset = sc.next();
+
+                if (reset.equalsIgnoreCase("yes")) {
+                    calculator.setHistory(new ArrayList<>()); // 빈 리스트를 새로 만들어서 Setter로 전달
+                    System.out.println("계산 이력을 모두 삭제했습니다.");
+                }
 
                 String answer;
 
