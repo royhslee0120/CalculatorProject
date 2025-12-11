@@ -2,6 +2,7 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator<T extends Number> {
 
@@ -68,5 +69,11 @@ public class Calculator<T extends Number> {
             return; // 삭제할 이력이 없을 때
         }
         history.remove(0); // 첫 번째 요소 제거
+    }
+
+    public List<Double> findResults(double target) { // Lambda & Stream을 사용해서 history에서 조건에 맞는 값만 필터링
+        return history.stream()               // List<Double> → Stream<Double>
+                .filter(result -> result > target) // target 보다 큰 값만 통과
+                .collect(Collectors.toList());     // 다시 List<Double>로 수집
     }
 }

@@ -44,7 +44,18 @@ public class App {
 
                 System.out.println("결과: " + result);
 
-                System.out.println("현재까지의 연산 결과 이력: " + calculator.getHistory()); // 현재까지의 연산 기록 출력
+                System.out.println("현재까지의 연산 결과 이력: " + calculator.getHistory()); // 현재까지의 연산 이력 출력
+
+                System.out.print("저장된 결과 중에서 입력값보다 큰 값들을 조회하시겠습니까? (yes 입력 시 조회): ");
+                String view = sc.next();
+
+                if (view.equalsIgnoreCase("yes")) { // 입력값보다 큰 이력 조회 가능
+                    System.out.print("입력값을 입력하세요: ");
+                    double target = sc.nextDouble(); // 입력값 입력
+
+                    System.out.println("기준값 " + target + " 보다 큰 결과들: "
+                            + calculator.findResults(target));
+                }
 
                 System.out.print("계산 이력을 삭제하시겠습니까?(all 입력 시 전체 삭제, first 입력 시 가장 먼저 저장된 이력 삭제): "); // 전체와 먼저 저장된 데이터 입력시를 구분하기 위해서 all과 first로 구분
                 String reset = sc.next();
