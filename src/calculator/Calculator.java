@@ -7,7 +7,7 @@ public class Calculator {
 
     private List<Integer> history = new ArrayList<>(); // 연산 결과 저장
 
-    public int calculator(int num1, int num2, String op) {
+    public int calculator(int num1, int num2, Operator op) {
 
         if (num1 < 0 || num2 < 0) {
             throw new IllegalArgumentException("양의 정수(0 포함)를 입력해야합니다. 처음부터 다시 입력해주세요.");
@@ -16,19 +16,19 @@ public class Calculator {
         int result;
 
         switch (op) {
-            case "+":
+            case PLUS:
                 result = num1 + num2;
                 break;
 
-            case "-":
+            case MINUS:
                 result = num1 - num2;
                 break;
 
-            case "*":
+            case MULTIPLY:
                 result = num1 * num2;
                 break;
 
-            case "/":
+            case DIVIDE:
                 if (num2 == 0) {
                     throw new ArithmeticException("나눗셈 연산에서 분모(두번째 숫자)에 0이 입력될 수 없습니다.");
                 }
@@ -56,9 +56,9 @@ public class Calculator {
         }
     }
 
-    public void clearHistory() { // 이력 전체 삭제
-        history.clear();
-    }
+//    public void clearHistory() { // 이력 전체 삭제 (사용되지 않는 코드 주석 처리)
+//        history.clear();
+//    }
 
     public void removeHistory() {
         if (history.isEmpty()) {
